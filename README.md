@@ -1,19 +1,19 @@
 Опущенные поля:
-В методе add:
+* В методе add:
 privacy, comment_privacy, privacy_view, privacy_comment
-В методе сreateComment:
+* В методе сreateComment:
 owner_id, reply_to,guid
-В методе deleteComment:
+* В методе deleteComment:
 owner_id
-В методе edit:
+* В методе edit:
 privacy, comment_privacy, privacy_view, privacy_comment
-В методе editComment:
+* В методе editComment:
 owner_id
-В методе get:
+* В методе get:
 offset, count, sort
-В методе getById:
+* В методе getById:
 owner_id, need_wiki
-В методе getComment:
+* В методе getComment:
 owner_id, sort, offset
-В методе restoreComment:
+* В методе restoreComment:
 owner_id
