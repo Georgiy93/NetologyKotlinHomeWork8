@@ -27,7 +27,7 @@ object NoteService {
 
     fun addComment(userId: Int, noteId: Int, comment: Comment) {
         val noteList = noteLists[userId] ?: throw NoNoteListException()
-       val note = noteList.notes.find { it.noteId == noteId } ?: throw NoNoteException()
+        val note = noteList.notes.find { it.noteId == noteId } ?: throw NoNoteException()
         note.comment.add(comment)
 
     }
@@ -41,8 +41,8 @@ object NoteService {
     fun deleteComment(userId: Int, noteId: Int, commentId: Int) {
         val noteList = noteLists[userId] ?: throw NoNoteListException()
         val note = noteList.notes.find { it.noteId == noteId } ?: throw NoNoteException()
-        val comment=note.comment.find { it.commentId == commentId }?: throw NoCommentException()
-        tempComment+=comment
+        val comment = note.comment.find { it.commentId == commentId } ?: throw NoCommentException()
+        tempComment += comment
         note.comment.retainAll { it.commentId != commentId }
     }
 
@@ -57,7 +57,7 @@ object NoteService {
     fun editComment(userId: Int, noteId: Int, commentId: Int, text: String) {
         val noteList = noteLists[userId] ?: throw NoNoteListException()
         val note = noteList.notes.find { it.noteId == noteId } ?: throw NoNoteException()
-        val comment=note.comment.find { it.commentId == commentId }?: throw NoCommentException()
+        val comment = note.comment.find { it.commentId == commentId } ?: throw NoCommentException()
         comment.text = text
 
     }
@@ -90,7 +90,7 @@ object NoteService {
     fun restoreComment(userId: Int, noteId: Int, commentId: Int) {
         val noteList = noteLists[userId] ?: throw NoNoteListException()
         val note = noteList.notes.find { it.noteId == noteId } ?: throw NoNoteException()
-        val comment=tempComment.find {it.commentId==commentId }?:throw NoCommentException()
+        val comment = tempComment.find { it.commentId == commentId } ?: throw NoCommentException()
         note.comment.add(comment)
 
     }
@@ -102,8 +102,6 @@ object NoteService {
 }
 
 
-
-
 fun main() {
     NoteService.addNote(1, Note(noteId = 12, "Отдых", "Привет"))
     NoteService.addNote(4, Note(noteId = 23, "Развлечения", "Куда идем?"))
@@ -113,12 +111,12 @@ fun main() {
     NoteService.addComment(1, 12, Comment(1, "С 13го по 14ое"))
     NoteService.addComment(4, 23, Comment(2, "С 13го по 14ое"))
     NoteService.addNote(5, Note(noteId = 24, "Развлечения", "Куда идем?"))
-    println(NoteService.getComments(4, 23,1))
+    println(NoteService.getComments(4, 23, 1))
     NoteService.deleteComment(4, 23, 2)
-    println(NoteService.getComments(4, 23,1))
+    println(NoteService.getComments(4, 23, 1))
     NoteService.restoreComment(4, 23, 2)
-    NoteService.editNote(5,24,"Место", "Где собираемся?")
-    NoteService.editComment(4, 23, 2,"14го числа")
+    NoteService.editNote(5, 24, "Место", "Где собираемся?")
+    NoteService.editComment(4, 23, 2, "14го числа")
     println(NoteService.getNoteID(1, 13))
     println(NoteService.getNote(1, "12, 13"))
     NoteService.printNoteLists()

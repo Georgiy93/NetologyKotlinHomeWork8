@@ -185,6 +185,7 @@ class MainKtTest {
         NoteService.addComment(1, 12, Comment(2, "С 13го по 14ое"))
         NoteService.getComments(1, 12, 1)
     }
+
     @Test(expected = NoNoteListException::class)
     fun restoreCommentNoteListException() {
         NoteService.addNote(1, Note(noteId = 12, "Отдых", "Привет"))
@@ -208,6 +209,7 @@ class MainKtTest {
         NoteService.deleteComment(1, 12, 2)
         NoteService.restoreComment(1, 12, 1)
     }
+
     @Test
     fun restoreComment() {
         NoteService.addNote(1, Note(noteId = 12, "Отдых", "Привет"))
